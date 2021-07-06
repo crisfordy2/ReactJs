@@ -1,22 +1,22 @@
 
-// Clase de los observables aqui se podra agregar, eliminar y listar los observables
+// Clase de los observables aqui se podra agregar, eliminar y listar los observadores
 class Observable{
 
     constructor(){
         this.observers = [];
     }
 
-    // Agrega un Observable al array observers
+    // Agrega un observador al array observers
     subcribe(notifyingClass){ 
         this.observers.push(notifyingClass)
     }
 
-    // Elimina un Observable del array observers
+    // Elimina un observador del array observers
     unSubcribe(notifyingClass){
         this.observers = this.observers.filter(observer => observer instanceof notifyingClass !== true)
     }
 
-    // Lista las notificaciones de los observables del array 
+    // Se actualiza la informacion mediante notificaciones a los observadores del array 
     notifyObservable(model){
         this.observers.forEach(observer => {
             observer.notify(model);
@@ -25,43 +25,44 @@ class Observable{
 }
 
 
-// Extiende de la clase Observable, y aqui se podra incrementar las notificaciones
+// Clase observada , extiende de la clase Observable, y aqui se podran lanzar las notificaciones
 class NumberExample extends Observable{
     constructor(){
         super();
         this.value = 0;
     }
 
-    // Incrementa la notificacion 
+    // Incrementa el valor en 1 y luego notifica a los observadores de este cambio  
     increment(){
         this.value++;
         this.notifyObservable(this);
     }
 }
 
-
+// clase observadora
 class NumberExampleSpanish{
-    // imprime la notificacion en español
+    // metodo que maneja la informacion actualizada del observable, imprime la notificacion en español 
     notify(model){
         console.log(`El nuevo nuemero es: ${model.value}`);
     }
 }
 
+// clase observadora
 class NumberExampleEnglish{
-// imprime la notificacion en ingles
+// metodo que maneja la informacion actualizada del observable, imprime la notificacion en ingles
     notify(model){
         console.log(`the new number is: ${model.value}`);
     }
 }
 
-// se crea una instancia de la hija de Observable
+// se crea una instancia de la clase Observada
 let numberExample = new NumberExample();
 
-// se agregan dos observables al array
+// se registran dos observadores a la clase observada
 numberExample.subcribe(new NumberExampleSpanish())
 numberExample.subcribe(new NumberExampleEnglish())
 
-// incrementan y se listan las notificaciones
+// se ejecuta el metodo que notifica a los observadores 
 numberExample.increment();
 numberExample.increment();
 
