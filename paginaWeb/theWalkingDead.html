@@ -18,6 +18,137 @@
     <script
         src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
     </script>
-    <script src="assets/js/script.js"></script>    
+    <script 
+        src="https://unpkg.com/@babel/standalone/babel.min.js">
+    </script>
+    <!-- <script src="assets/js/script.js"></script>     -->
+    <script type="text/babel">
+
+    const data = [
+        {
+            temporada: 1,
+            episodeos: 6,
+            fecha: "(2010)"
+        },
+        {
+            temporada: 2,
+            episodeos: 13,
+            fecha: "(2011-2012)"
+        },
+        {
+            temporada: 3,
+            episodeos: 16,
+            fecha: "(2012-2013)"
+        },
+        {
+            temporada: 4,
+            episodeos: 16,
+            fecha: "(2013-2014)"
+        },
+        {
+            temporada: 5,
+            episodeos: 16,
+            fecha: "(2014-2015)"
+        },
+        {
+            temporada: 6,
+            episodeos: 16,
+            fecha: "(2015-2016)"
+        },
+        {
+            temporada: 7,
+            episodeos: 16,
+            fecha: "(2016-2017)"
+        },
+        {
+            temporada: 8,
+            episodeos: 16,
+            fecha: "(2017-2018)"
+        },
+        {
+            temporada: 9,
+            episodeos: 16,
+            fecha: "(2018-2019)"
+        },
+        {
+            temporada: 10,
+            episodeos: 22,
+            fecha: "(2019-2021)"
+        },
+    ]    
+
+    function DivFondo(){
+        return (
+        <div id="fondo">
+            <div id="centro">
+                <img src="./assets/img/fondo.jpg" alt="img" id="imagen"/>
+                <div id="contenido">
+                    <h1 id="titulo">The walking dead</h1>
+                    <br/>
+                    <div id="contenedor-parrafo">
+                        <p id="parrafo">The Walking Dead es una serie de televisión estadounidense de horror post-apocalíptico para AMC basada en la de cómics de Robert Kirkman, Tony Moore y Charlie Adlard. La serie presenta un gran elenco como sobrevivientes de un apocalipsis zombi, tratando de mantenerse con vida bajo la amenaza casi constante de ataques de los zombis sin conciencia, coloquialmente conocidos como «caminantes». Sin embargo, con la caída de la humanidad, estos  sobrevivientes también enfrentan conflictos con otros sobrevivientes que han formado grupos y comunidades con sus propios conjuntos de leyes y morales, lo que a menudo conduce a conflictos hostiles entre las comunidades humanas. Andrew Lincoln interpretó al personaje principal de la serie, Rick Grimes, hasta su partida durante la novena temporada. Otros miembros del elenco de larga data han incluido a Reedus, Steven Yeun, Chandler Riggs, Melissa McBride, Lauren Cohan, Danai Gurira, Josh McDermitt y Christian Serratos.</p>
+                    </div>   
+                    <br/>
+                    <h2 className="subtitulo">Temporadas</h2>
+                    <br/>
+                    <Tabla data={data}/>
+                    <br/>
+                    <h2 id="iraVer" className="subtitulo">
+                        <a href="https://www.netflix.com/co/title/70177057" target="blank">Presione aqui para ir a ver The Walking Dead</a>
+                    </h2>                        
+                </div>
+                <Footer/>
+            </div>    
+        </div>
+        );
+    }
+
+    function Tabla(props){
+        return(
+            <div id="contenedor-tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Temporada</th>
+                            <th>Episodeos</th>
+                            <th>Fecha Emisión</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {props.data.map(element=> 
+                        <tr key={getRandom()}>
+                            <th key={getRandom()}>{element.temporada}</th>
+                            <th key={getRandom()}>{element.episodeos}</th>
+                            <th key={getRandom()}>{element.fecha}</th>    
+                        </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+
+    function Footer(){
+        return(
+            <footer>
+                <div id="contacto">
+                    <h2>Cristian Gomez</h2>
+                    <h2>correo: gomez18cristian@gmail.com</h2>
+                </div>
+                <div id="icon">
+                    <img src="./assets/img/mail-open-outline.svg" alt="correo" />
+                </div>
+            </footer>
+        );
+    }
+
+    function getRandom() {
+        return Math.random();
+    }
+
+
+    ReactDOM.render(<DivFondo/>, document.getElementById("root"))
+
+    </script>    
 </body>
 </html>

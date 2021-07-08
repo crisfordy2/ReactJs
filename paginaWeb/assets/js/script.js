@@ -1,6 +1,6 @@
 
 let divFondo = React.createElement("div", {id:"fondo", key: "fondo"}, 
-    React.createElement("li", {id:"centro", key: "centro"}, 
+    React.createElement("div", {id:"centro", key: "centro"}, 
         React.createElement("img", {src:"./assets/img/fondo.jpg", alt:"img", id:"imagen"}),
         React.createElement("div", {id:"contenido", key: "contenido"},
             React.createElement("h1", {id:"titulo"}, "The walking dead"),
