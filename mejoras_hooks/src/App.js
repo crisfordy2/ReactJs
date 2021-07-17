@@ -1,21 +1,40 @@
-import './App.css';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import Home from './components/Home';
+import About from './components/About';
+import Gallery from './components/Gallery';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom' 
 
-function GitHubUser({user}){
-    const [data, setData] = useState();
-    const [error, setError] = useState();
-    const [loading, setLoading] = useState(false);
+export default function App(){
 
-    useEffect(()=>{
-        if(!user){
-            return;
-        }
-        setLoading(true);
-
-        fetch(`https://api.github.com/users/${user}`)
-            .then(data => data.json())
-            .then(setData)
-            .then(()=>setLoading(false))
-            .catch(setError)
-    });
+    return(
+        <>
+        <Router>
+            <div>
+                <ul>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/gallery">Gallery</Link>
+                    </li>
+                    <li>
+                        <Link to="/about">About</Link>
+                    </li>
+                </ul>
+            </div>
+            <Switch>
+                <Route path="/about">
+                    <About />
+                </Route>
+                <Route path="/gallery">
+                    <Gallery />
+                </Route>
+                <Route path="/">
+                    <Home />
+                </Route>
+            </Switch>
+        </Router>
+        <footer>Pequeño footer</footer>
+        </>
+    );
 }
